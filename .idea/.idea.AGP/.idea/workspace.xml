@@ -7,39 +7,143 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="064d8015-ac46-47ef-96cf-8186edcd0839" name="Changes" comment="" />
+    <list default="true" id="064d8015-ac46-47ef-96cf-8186edcd0839" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.AGP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AGP/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/AI/BP_NPC.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/AI/BP_NPC.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_Room2ExitEnemy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_Room2ExitEnemy.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_Room3ExitEnemy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_Room3ExitEnemy.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_Room4ExitEnemy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_Room4ExitEnemy.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_FirstPersonCharacter.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_FirstPersonCharacter1.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_FirstPersonProjectile.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_PickUp_Rifle.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Input/Actions/IA_Jump.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Input/Actions/IA_Look.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Input/Actions/IA_Move.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Input/Actions/IA_Shoot.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Input/IMC_Default.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Input/IMC_Weapons.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Maps/FirstPersonMap.umap" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Maps/FirstPersonMap_BuiltData.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Falling.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Idle.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Jump.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Land.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Falling.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Fire.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Idle.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Jump.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Land.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Run.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Shoot_Montage.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Run_Fwd.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Walk_Fwd.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FirstPerson_AnimBP.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Character/Materials/M_UE4Man_Body.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Character/Materials/MaterialLayers/ML_GlossyBlack_Latex_UE4.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Character/Materials/MaterialLayers/ML_Plastic_Shiny_Beige.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Character/Materials/MaterialLayers/ML_Plastic_Shiny_Beige_LOGO.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Character/Materials/MaterialLayers/ML_SoftMetal_UE4.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Character/Materials/MaterialLayers/T_ML_Aluminum01.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Character/Materials/MaterialLayers/T_ML_Aluminum01_N.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Character/Materials/MaterialLayers/T_ML_Rubber_Blue_01_D.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Character/Materials/MaterialLayers/T_ML_Rubber_Blue_01_N.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Character/Mesh/SK_Mannequin_Arms.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Character/Mesh/SK_Mannequin_Arms_PhysicsAsset.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Character/Mesh/SK_Mannequin_Arms_Skeleton.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Character/Textures/UE4_LOGO_CARD.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Character/Textures/UE4_Mannequin_MAT_MASKA.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Character/Textures/UE4_Mannequin__normals.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/0/0M/LYKU8MRWM4BO3O1FDZBG2U.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/0/7P/QZX5AESKLO855EVPT5JU20.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/0/CL/381LM03PFI8AF9NED1SEV2.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/0/GO/I8WEFD3RY9V3NVQLSU6QM4.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/0/XV/VTAF5COFGLO9YT51MQCVTR.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/1/63/MG6FOV6QQX2CAZCGF7O9MM.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/1/JT/XIHYQ8ZTVL6F9GCUZX1AQ2.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/3/AI/0XWE3RNM2XQC0ST1KXG02O.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/3/CP/XRLOR3HVYVHJA3N9PKGXZH.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/4/CR/SRVPLA8UNZ8XIIP0E036DI.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/5/80/QQN0UFFAA797E1UT4IMD29.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/5/W4/MXSOOLN47B2MJB5ZNQINHQ.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/6/0Z/5RQIHCZ9W3UXRGL4LTLQAK.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/6/7T/GM0EQ2Z7BN3RV91M3TA1BD.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/6/7Z/7EHFAZ5HVWXAWQ04QO5TH0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/6/AJ/2XZ3RUK0LFB63FVNQE7P5R.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/6/HC/FI3CQDKJY4J00D2B21FYQZ.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/7/5X/6EW8RE9VA2GGHRWK614FCI.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/7/DF/1GID8P6B00XRWKYCXU7HT1.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/7/I8/LH9T10MU22N3EEPTZ4GAFC.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/7/L5/1ZJ54FMA0DAL3I2Q8RFAIB.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/8/3M/4ATOKH0ZGPCVBS85MPKAXK.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/8/CW/6HT16P8P5RAXNJG3EVYWE9.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/8/I3/SJA2DR76AA1HU32IOBNTZ2.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/8/N6/7HWHBG6K5ONLNTKPMLXMYR.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/8/SZ/D1AHM62WL9TXSNPYQDXQMZ.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/8/Z7/W1SXRCM1KAKBJOIZDLHZ47.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/9/6K/53TOYTOLDEUBMS5SLUFP3V.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/9/JW/IY5R6I5N0YWU9LYWKXFXH9.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/9/OJ/9MHHMH0XHVZ04YDZ7NPC32.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/9/Q2/TOKV0KMMZ7RIQ78R0UEDQL.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/9/VP/FVTPO8KZ0WPMCSQLVJE6O9.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/A/KU/12YG9I1QW2GU72MG8QQX1K.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/A/RJ/Z7CLKO8GGJ7RXH5PUAF4T4.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/A/XJ/HL558UUAGCS9HVVOI0S7PX.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/B/51/6JKB4DNGJP09QUHY23FHRV.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/B/DD/654T6CAPVSXAN1LXEX71EI.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/C/P8/0GJ9TLQE2YKOIFZ6YHG33H.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/C/VO/VMN4G7K3NKKV6F8HTPHHDB.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/D/0W/E1FKEGVKGOLM7HGLQPCIPO.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/D/JD/UYPQA5AMKF1BLORE87EVV6.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/E/MX/R1GV431P5FDO08OFULRA01.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/E/UE/YUZ9741T50O1SYRX90OB0S.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/F/2F/0SPQG8P507LI9VUAFG20OA.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalObjects__/FirstPerson/Maps/FirstPersonMap/1/KG/WXBHR5YF7EMN5ENSKZGERE.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalObjects__/FirstPerson/Maps/FirstPersonMap/3/BY/K2NKB37FY83282ZJ5Q84B9.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalObjects__/FirstPerson/Maps/FirstPersonMap/5/68/DK3EWP7A4H1CU1MWJ4M3SR.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalObjects__/FirstPerson/Maps/FirstPersonMap/6/B8/RE8N15L5TGXIQNKLJO5ONQ.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalObjects__/FirstPerson/Maps/FirstPersonMap/6/VE/TF378B0L0V6R2E9RYZ61WK.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalObjects__/FirstPerson/Maps/FirstPersonMap/7/XG/B4XEEQD3M51IAE3XXUCIGI.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalObjects__/FirstPerson/Maps/FirstPersonMap/9/NP/OGSW48O49NB75KV3Y5NAUU.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalObjects__/FirstPerson/Maps/FirstPersonMap/E/D1/9XTHNJ7RYMHRDCEYQKNIYP.uasset" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 1
-}]]></component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2o4QcrnG7SBUiLBrrx4uJ1JUYze" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\aidan\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
-      "C:\\Users\\aidan\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
-      "C:\\Users\\aidan\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\aidan\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\aidan\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\aidan\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="AGP" type="CppProject" factoryName="C++ Project">
       <configuration_1>
@@ -118,6 +222,8 @@
       <option name="presentableId" value="Default" />
       <updated>1730126451362</updated>
       <workItem from="1730126454088" duration="1169000" />
+      <workItem from="1730420034112" duration="1408000" />
+      <workItem from="1730423200231" duration="290000" />
     </task>
     <servers />
   </component>

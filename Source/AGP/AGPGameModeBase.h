@@ -13,5 +13,8 @@ UCLASS()
 class AGP_API AAGPGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
+
+public:
+	AAGPGameModeBase();
 	
 };

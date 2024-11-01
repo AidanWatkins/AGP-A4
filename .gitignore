@@ -6,7 +6,3 @@ Saved/
 .vs/
 *.VC.db
 *.VC.opendb
-
-# Ignore large asset files, if not necessary
-*.uasset
-*.umap
