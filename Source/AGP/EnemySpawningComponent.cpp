@@ -40,24 +40,27 @@ void UEnemySpawningComponent::BeginPlay()
 // Spawns an enemy at specified intervals whilst not exceeding the max limits
 void UEnemySpawningComponent::SpawnEnemy()
 {
-	// Check if an enemy can be spawned based on current limits
 	if (!EnemyManager || !EnemyManager->CanSpawnEnemy() || SpawnedEnemiesCount >= MaxEnemies)
 	{
-		// Stop the timer if conditions for spawning are no longer met
 		GetWorld()->GetTimerManager().ClearTimer(SpawnTimerHandle);
 		return;
 	}
 
-	// Set spawn location above owners current location to avoid ground overlap
-	FVector SpawnLocation = GetOwner()->GetActorLocation() + FVector(0.0f, 0.0f, 100.0f);
-	FRotator SpawnRotation = FRotator::ZeroRotator;
+	// Get the room's origin and rotation
+	FVector RoomOrigin = GetOwner()->GetActorLocation();
+	FRotator RoomRotation = GetOwner()->GetActorRotation();
 
-	// Spawn parameters for collision handling
+	// Set a center offset (based on an approximate room size)
+	FVector CenterOffset(500.0f, 0.0f, 100.0f);  // Adjust this offset based on room dimensions
+
+	// Calculate spawn location at the room's center with an additional Z offset
+	FVector SpawnLocation = RoomOrigin + RoomRotation.RotateVector(CenterOffset);
+
+	// Spawn enemy at the calculated location and with room’s rotation
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+	AActor* SpawnedEnemy = GetWorld()->SpawnActor<AActor>(EnemyType, SpawnLocation, RoomRotation, SpawnParams);
 
-	// Spawn the enemy actor of the specified type at the given location whilst using the set SpawnParams
-	AActor* SpawnedEnemy = GetWorld()->SpawnActor<AActor>(EnemyType, SpawnLocation, SpawnRotation, SpawnParams);
 	if (SpawnedEnemy)
 	{
 		SpawnedEnemiesCount++;
