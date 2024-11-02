@@ -10,62 +10,64 @@ UCLASS()
 class AGP_API ARoomManager : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+    
+public:    
 	ARoomManager();
+    
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 protected:
 	virtual void BeginPlay() override;
 
-	// Spawns the initial room at the origin
-	void SpawnInitialRoom();
+	// Generates and replicates the map seed
+	UFUNCTION(Server, Reliable)
+	void GenerateMapSeed();
 
-	// Attempts to spawn a new room at a random available exit
-	void SpawnRoomAtRandomExit();
+	// Initializes map generation with the provided seed
+	void GenerateMap(int32 Seed);
 
-	// Checks if the given center point is already occupied by another room
+	// Callback to generate map on clients once MapSeed is replicated
+	UFUNCTION()
+	void OnRep_MapSeed();
+
+	// Spawn methods
+	void SpawnInitialRoom(FRandomStream& Stream);
+	void SpawnRoomAtRandomExit(FRandomStream& Stream);
+
+	// Checks if room position is valid
 	bool IsRoomPositionValid(const FVector& CenterPoint);
-
-	// Array of available room classes
+    
+	// Room-related properties
 	UPROPERTY(EditDefaultsOnly, Category = "Rooms")
 	TArray<TSubclassOf<ARoomBase>> RoomClasses;
-
-	// Array of room classes with enemy spawners
+    
 	UPROPERTY(EditDefaultsOnly, Category = "Rooms")
 	TArray<TSubclassOf<ARoomBase>> EnemySpawnerRoomClasses;
-
-	// The initial room blueprint to spawn
+    
 	UPROPERTY(EditDefaultsOnly, Category = "Rooms")
 	TSubclassOf<ARoomBase> InitialRoomClass;
-
-	// Interval at which enemy spawner rooms should be placed
+    
 	UPROPERTY(EditAnywhere, Category = "Rooms")
 	int32 SpawnerRoomInterval;
 
-	// The size of the grid to help organize room placement
 	UPROPERTY(EditAnywhere, Category = "Rooms")
 	int32 GridSize;
 
-	// The spacing between rooms, should correspond to room size
 	UPROPERTY(EditAnywhere, Category = "Rooms")
 	float RoomSpacing;
 
-	// List of available exit points for new rooms
+	// The seed to sync map generation across clients
+	UPROPERTY(ReplicatedUsing = OnRep_MapSeed)
+	int32 MapSeed;
+    
 	TArray<FTransform> RoomExits;
-
-	// List of all spawned rooms
-	TArray<ARoomBase*> SpawnedRooms;
-
-	// List of occupied positions for room centers to prevent overlap
 	TSet<FVector> OccupiedPositions;
-
-	// Number of rooms spawned
+	TArray<ARoomBase*> SpawnedRooms;
+    
 	int32 RoomCount;
-
-	// Maximum number of rooms to spawn
 	UPROPERTY(EditAnywhere, Category = "Rooms")
 	int32 MaxRooms;
 
-public:	
+public:    
 	virtual void Tick(float DeltaTime) override;
 };
