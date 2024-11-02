@@ -9,14 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="064d8015-ac46-47ef-96cf-8186edcd0839" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AGP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AGP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_Room2Exits.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_Room2Exits.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_Room3Exit.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_Room3Exit.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_Room4Exit.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_Room4Exit.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/AGP/Pickups/PickupManagerSubsystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/AGP/Pickups/PickupManagerSubsystem.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/AGP/Pickups/WeaponPickup.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/AGP/Pickups/WeaponPickup.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/AGP/RoomBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/AGP/RoomBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/AGP/RoomBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/AGP/RoomBase.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/AGP/RoomManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/AGP/RoomManager.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Levels/ShooterMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/ShooterMap.umap" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +129,7 @@
       <workItem from="1730420034112" duration="1408000" />
       <workItem from="1730423200231" duration="998000" />
       <workItem from="1730428039065" duration="3387000" />
-      <workItem from="1730528422289" duration="4534000" />
+      <workItem from="1730528422289" duration="5921000" />
     </task>
     <servers />
   </component>
