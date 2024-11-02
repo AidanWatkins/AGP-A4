@@ -21,8 +21,11 @@ void AWeaponPickup::OnPickupOverlap(UPrimitiveComponent* OverlappedComponent, AA
 
 	if (ABaseCharacter* Player = Cast<ABaseCharacter>(OtherActor))
 	{
-		Player->EquipWeapon(true, WeaponStats);
-		Destroy();
+		if (Player->IsPlayerControlled())
+		{
+			Player->EquipWeapon(true, WeaponStats);
+			Destroy();
+		}
 	}
 }
 

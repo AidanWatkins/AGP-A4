@@ -32,6 +32,12 @@ TArray<UArrowComponent*> ARoomBase::GetExitComponents()
 	return Exits;
 }
 
+TArray<USceneComponent*> ARoomBase::GetWeaponSpawnPoints()
+{
+	return WeaponSpawnPoints;
+}
+
+
 // Called when the game starts or when spawned
 void ARoomBase::BeginPlay()
 {
@@ -53,6 +59,17 @@ void ARoomBase::BeginPlay()
 		}
 	}
 	UE_LOG(LogTemp, Warning, TEXT("Number of exits found: %d"), Exits.Num());
+
+	TArray<USceneComponent*> AllComponents;
+	GetComponents<USceneComponent>(AllComponents);
+	for(USceneComponent* Comp : AllComponents)
+	{
+		if (Comp->GetName().Contains("WeaponSpawnPoint"))
+		{
+			WeaponSpawnPoints.Add(Comp);
+		}
+	}
+	UE_LOG(LogTemp, Warning, TEXT("Number of weapon spawn points found: %d"), WeaponSpawnPoints.Num());
 }
 
 // Called every frame

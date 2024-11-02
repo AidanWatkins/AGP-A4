@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -14,25 +12,21 @@ class AGP_API ARoomManager : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
 	ARoomManager();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	// Spawns the initial room at the origin
 	void SpawnInitialRoom();
 
-	TArray<FTransform> RoomExits; // List of available exit points for new rooms
-	TArray<ARoomBase*> SpawnedRooms; // List of all spawned rooms
-	TArray<FVector> SpawnedRoomPositions; // List of room center points to track occupied positions
+	// Attempts to spawn a new room at a random available exit
+	void SpawnRoomAtRandomExit();
 
-	// The initial room blueprint to spawn
-	UPROPERTY(EditDefaultsOnly, Category = "Rooms")
-	TSubclassOf<ARoomBase> InitialRoomClass;
+	// Checks if the given center point is already occupied by another room
+	bool IsRoomPositionValid(const FVector& CenterPoint);
 
-	// Array of room classes for standard spawns
+	// Array of available room classes
 	UPROPERTY(EditDefaultsOnly, Category = "Rooms")
 	TArray<TSubclassOf<ARoomBase>> RoomClasses;
 
@@ -40,23 +34,38 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Rooms")
 	TArray<TSubclassOf<ARoomBase>> EnemySpawnerRoomClasses;
 
+	// The initial room blueprint to spawn
+	UPROPERTY(EditDefaultsOnly, Category = "Rooms")
+	TSubclassOf<ARoomBase> InitialRoomClass;
+
 	// Interval at which enemy spawner rooms should be placed
 	UPROPERTY(EditAnywhere, Category = "Rooms")
 	int32 SpawnerRoomInterval;
 
-	// Spawns a new room at a random available exit
-	void SpawnRoomAtRandomExit();
+	// The size of the grid to help organize room placement
+	UPROPERTY(EditAnywhere, Category = "Rooms")
+	int32 GridSize;
 
-	// Keeps track of the total number of rooms spawned
+	// The spacing between rooms, should correspond to room size
+	UPROPERTY(EditAnywhere, Category = "Rooms")
+	float RoomSpacing;
+
+	// List of available exit points for new rooms
+	TArray<FTransform> RoomExits;
+
+	// List of all spawned rooms
+	TArray<ARoomBase*> SpawnedRooms;
+
+	// List of occupied positions for room centers to prevent overlap
+	TSet<FVector> OccupiedPositions;
+
+	// Number of rooms spawned
 	int32 RoomCount;
 
-	// Maximum number of rooms to spawn in the level
+	// Maximum number of rooms to spawn
 	UPROPERTY(EditAnywhere, Category = "Rooms")
 	int32 MaxRooms;
 
-	
-
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 };

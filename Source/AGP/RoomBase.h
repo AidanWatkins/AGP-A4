@@ -23,6 +23,8 @@ public:
 	// Retrieves the array of exit components for this room
 	TArray<UArrowComponent*> GetExitComponents();
 
+	TArray<USceneComponent*> GetWeaponSpawnPoints();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -30,6 +32,10 @@ protected:
 	// Array storing arrow components, each representing an exit point
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Exits")
 	TArray<UArrowComponent*> Exits;
+
+	//Array for storing spawn points for weapons
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon Spawns")
+	TArray<USceneComponent*> WeaponSpawnPoints;
 
 public:	
 	// Called every frame
