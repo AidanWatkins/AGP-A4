@@ -1,144 +1,162 @@
 #include "RoomManager.h"
 #include "RoomBase.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Net/UnrealNetwork.h"
 
 ARoomManager::ARoomManager()
 {
-	PrimaryActorTick.bCanEverTick = true;
+    PrimaryActorTick.bCanEverTick = true;
+    bReplicates = true;
 
-	RoomCount = 0;
-	MaxRooms = 10;
-	GridSize = 20;
-	RoomSpacing = 1000.0f;
+    RoomCount = 0;
+    MaxRooms = 10;
+    GridSize = 20;
+    RoomSpacing = 1000.0f;
 }
 
 void ARoomManager::BeginPlay()
 {
-	Super::BeginPlay();
-	
-	SpawnInitialRoom();
-
-	// Spawns rooms until MaxRooms is reached or no exits remain
-	for (int32 i = 1; i < MaxRooms; i++)
-	{
-		if (RoomExits.Num() > 0)
-		{
-			SpawnRoomAtRandomExit();
-		}
-		else
-		{
-			UE_LOG(LogTemp, Warning, TEXT("No available exits, stopping spawn."));
-			break;
-		}
-	}
+    Super::BeginPlay();
+    
+    if (HasAuthority())
+    {
+        GenerateMapSeed();  // Server generates the seed
+    }
+    else if (MapSeed != 0)
+    {
+        GenerateMap(MapSeed);  // Client already has seed (e.g., in a respawn or reload scenario)
+    }
 }
 
-void ARoomManager::SpawnInitialRoom()
+void ARoomManager::GenerateMapSeed_Implementation()
 {
-	if (InitialRoomClass)
-	{
-		ARoomBase* InitialRoom = GetWorld()->SpawnActor<ARoomBase>(InitialRoomClass, FVector::ZeroVector, FRotator::ZeroRotator);
-
-		if (InitialRoom)
-		{
-			RoomExits = InitialRoom->GetExitLocations();
-			OccupiedPositions.Add(FVector::ZeroVector);
-			RoomCount++;
-		}
-	}
+    MapSeed = FMath::Rand();  // Generate a random seed
+    GenerateMap(MapSeed);      // Server generates map with this seed
 }
 
-void ARoomManager::SpawnRoomAtRandomExit()
+void ARoomManager::GenerateMap(int32 Seed)
 {
-	if (RoomExits.Num() == 0 || RoomClasses.Num() == 0)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("No available exits or room classes."));
-		return;
-	}
+    FRandomStream Stream(Seed);  // Initialize the random stream with the seed
+    
+    SpawnInitialRoom(Stream);
+    
+    for (int32 i = 1; i < MaxRooms; i++)
+    {
+        if (RoomExits.Num() > 0)
+        {
+            SpawnRoomAtRandomExit(Stream);
+        }
+        else
+        {
+            UE_LOG(LogTemp, Warning, TEXT("No available exits, stopping spawn."));
+            break;
+        }
+    }
+}
 
-	TArray<int32> ValidExitIndices;
+// Callback for when MapSeed is replicated
+void ARoomManager::OnRep_MapSeed()
+{
+    GenerateMap(MapSeed);  // Generate map using replicated seed on clients
+}
 
-	// Check each exit to see if it provides a valid location
-	for (int32 i = 0; i < RoomExits.Num(); i++)
-	{
-		FTransform ExitTransform = RoomExits[i];
-		FVector ExitLocation = ExitTransform.GetLocation();
-		FVector CenterPoint = ExitLocation + (ExitTransform.GetRotation().Vector() * RoomSpacing);
+void ARoomManager::SpawnInitialRoom(FRandomStream& Stream)
+{
+    if (InitialRoomClass)
+    {
+        ARoomBase* InitialRoom = GetWorld()->SpawnActor<ARoomBase>(InitialRoomClass, FVector::ZeroVector, FRotator::ZeroRotator);
+        if (InitialRoom)
+        {
+            RoomExits = InitialRoom->GetExitLocations();
+            OccupiedPositions.Add(FVector::ZeroVector);
+            RoomCount++;
+        }
+    }
+}
 
-		if (IsRoomPositionValid(CenterPoint))
-		{
-			ValidExitIndices.Add(i);
-		}
-	}
+void ARoomManager::SpawnRoomAtRandomExit(FRandomStream& Stream)
+{
+    if (RoomExits.Num() == 0 || RoomClasses.Num() == 0)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("No available exits or room classes."));
+        return;
+    }
 
-	if (ValidExitIndices.Num() == 0)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("No valid exit found, stopping spawn."));
-		return;
-	}
+    TArray<int32> ValidExitIndices;
+    for (int32 i = 0; i < RoomExits.Num(); i++)
+    {
+        FTransform ExitTransform = RoomExits[i];
+        FVector ExitLocation = ExitTransform.GetLocation();
+        FVector CenterPoint = ExitLocation + (ExitTransform.GetRotation().Vector() * RoomSpacing);
 
-	// Pick a random valid exit and room class
-	int32 SelectedExitIndex = ValidExitIndices[UKismetMathLibrary::RandomInteger(ValidExitIndices.Num())];
-	FTransform ExitTransform = RoomExits[SelectedExitIndex];
-	FVector ExitLocation = ExitTransform.GetLocation();
-	FRotator ExitRotation = ExitTransform.GetRotation().Rotator();
+        if (IsRoomPositionValid(CenterPoint))
+        {
+            ValidExitIndices.Add(i);
+        }
+    }
 
-	TSubclassOf<ARoomBase> RoomToSpawn;
+    if (ValidExitIndices.Num() == 0)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("No valid exit found, stopping spawn."));
+        return;
+    }
 
-	if (SpawnerRoomInterval > 0 && (RoomCount + 1) % SpawnerRoomInterval == 0 && EnemySpawnerRoomClasses.Num() > 0)
-	{
-		int32 SpawnerRoomIndex = UKismetMathLibrary::RandomInteger(EnemySpawnerRoomClasses.Num());
-		RoomToSpawn = EnemySpawnerRoomClasses[SpawnerRoomIndex];
-	}
-	else
-	{
-		int32 RoomIndex = UKismetMathLibrary::RandomInteger(RoomClasses.Num());
-		RoomToSpawn = RoomClasses[RoomIndex];
-	}
+    int32 SelectedExitIndex = ValidExitIndices[Stream.RandRange(0, ValidExitIndices.Num() - 1)];
+    FTransform ExitTransform = RoomExits[SelectedExitIndex];
+    FVector ExitLocation = ExitTransform.GetLocation();
+    FRotator ExitRotation = ExitTransform.GetRotation().Rotator();
 
-	// Set spawn collision handling
-	FActorSpawnParameters SpawnParams;
-	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+    TSubclassOf<ARoomBase> RoomToSpawn;
+    if (SpawnerRoomInterval > 0 && (RoomCount + 1) % SpawnerRoomInterval == 0 && EnemySpawnerRoomClasses.Num() > 0)
+    {
+        RoomToSpawn = EnemySpawnerRoomClasses[Stream.RandRange(0, EnemySpawnerRoomClasses.Num() - 1)];
+    }
+    else
+    {
+        RoomToSpawn = RoomClasses[Stream.RandRange(0, RoomClasses.Num() - 1)];
+    }
 
-	// Spawn the room and update tracking data
-	ARoomBase* NewRoom = GetWorld()->SpawnActor<ARoomBase>(RoomToSpawn, ExitLocation, ExitRotation, SpawnParams);
+    FActorSpawnParameters SpawnParams;
+    SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+    ARoomBase* NewRoom = GetWorld()->SpawnActor<ARoomBase>(RoomToSpawn, ExitLocation, ExitRotation, SpawnParams);
 
-	if (NewRoom)
-	{
-		SpawnedRooms.Add(NewRoom);
-		OccupiedPositions.Add(ExitLocation);
+    if (NewRoom)
+    {
+        SpawnedRooms.Add(NewRoom);
+        OccupiedPositions.Add(ExitLocation);
 
-		RoomExits.RemoveAt(SelectedExitIndex);
+        RoomExits.RemoveAt(SelectedExitIndex);
 
-		// Add remaining exits from the new room, excluding the one connecting to the current exit
-		TArray<FTransform> NewExits = NewRoom->GetExitLocations();
-		NewExits.RemoveAll([&](const FTransform& Exit) {
-			return Exit.GetLocation().Equals(ExitLocation, 1.0f);
-		});
-		RoomExits.Append(NewExits);
+        TArray<FTransform> NewExits = NewRoom->GetExitLocations();
+        NewExits.RemoveAll([&](const FTransform& Exit) {
+            return Exit.GetLocation().Equals(ExitLocation, 1.0f);
+        });
+        RoomExits.Append(NewExits);
 
-		UE_LOG(LogTemp, Warning, TEXT("Room %d spawned at location: %s"), RoomCount + 1, *ExitLocation.ToString());
-		RoomCount++;
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Failed to spawn room."));
-	}
+        UE_LOG(LogTemp, Warning, TEXT("Room %d spawned at location: %s"), RoomCount + 1, *ExitLocation.ToString());
+        RoomCount++;
+    }
 }
 
 bool ARoomManager::IsRoomPositionValid(const FVector& CenterPoint)
 {
-	for (const FVector& OccupiedPosition : OccupiedPositions)
-	{
-		if (FVector::DistSquared(OccupiedPosition, CenterPoint) < FMath::Square(RoomSpacing))
-		{
-			return false;
-		}
-	}
-	return true;
+    for (const FVector& OccupiedPosition : OccupiedPositions)
+    {
+        if (FVector::DistSquared(OccupiedPosition, CenterPoint) < FMath::Square(RoomSpacing))
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 void ARoomManager::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);
+    Super::Tick(DeltaTime);
+}
+
+void ARoomManager::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+    DOREPLIFETIME(ARoomManager, MapSeed);
 }
