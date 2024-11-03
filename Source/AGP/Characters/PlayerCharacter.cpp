@@ -9,11 +9,6 @@
 APlayerCharacter::APlayerCharacter()
 {
     PrimaryActorTick.bCanEverTick = true;
-
-    // Initialize the third-person mesh only
-    ThirdPersonMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("ThirdPersonMesh"));
-    ThirdPersonMesh->SetupAttachment(GetRootComponent());
-    ThirdPersonMesh->SetOwnerNoSee(true); // Hide from owning player by default
 }
 
 // Called when the game starts or when spawned
@@ -29,20 +24,6 @@ void APlayerCharacter::BeginPlay()
         {
             Subsystem->AddMappingContext(InputMappingContext, 0);
         }
-    }
-
-    // Visibility setup based on local player control
-    if (IsLocallyControlled())
-    {
-        // Show first-person arms (default mesh) and hide third-person mesh for local player
-        if (GetMesh()) GetMesh()->SetOnlyOwnerSee(true); // Only visible to local player
-        if (ThirdPersonMesh) ThirdPersonMesh->SetOwnerNoSee(true); // Hide third-person mesh for local player
-    }
-    else
-    {
-        // Show third-person mesh and hide first-person arms for other players
-        if (GetMesh()) GetMesh()->SetOnlyOwnerSee(false); // Arms invisible to others
-        if (ThirdPersonMesh) ThirdPersonMesh->SetOwnerNoSee(false); // Third-person mesh visible to others
     }
 
     // Ability setup

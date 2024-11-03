@@ -45,13 +45,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Abilities")
 	AAbilityBase* CurrentAbility;
 
-	// Only third-person mesh needed for visibility setup
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Mesh")
-	USkeletalMeshComponent* ThirdPersonMesh;
-
 	void ActivateCurrentAbility();
 
-public:
+public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 

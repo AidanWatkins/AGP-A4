@@ -14,6 +14,14 @@ class AGP_API ABaseCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
+private:
+	void EquipWeaponImplementation(bool bEquipWeapon,
+		const FWeaponStats& WeaponStats = FWeaponStats());
+
+	UFUNCTION(NetMulticast, Reliable)
+	void MulticastEquipWeapon(bool bEquipWeapon,
+		const FWeaponStats& WeaponStats = FWeaponStats());
+
 public:
 	// Sets default values for this character's properties
 	ABaseCharacter();
