@@ -8,9 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="064d8015-ac46-47ef-96cf-8186edcd0839" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AGP/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AGP/.idea/projectSettingsUpdater.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AGP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AGP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/AGP/Characters/EnemySpawner.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/AGP/Characters/EnemySpawner.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,6 +141,7 @@
       <workItem from="1730428039065" duration="3387000" />
       <workItem from="1730528422289" duration="5921000" />
       <workItem from="1730554878448" duration="1175000" />
+      <workItem from="1730626150018" duration="1228000" />
     </task>
     <servers />
   </component>
