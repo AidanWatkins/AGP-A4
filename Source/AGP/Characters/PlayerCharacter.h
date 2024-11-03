@@ -52,10 +52,7 @@ protected:
 
 	void ActivateCurrentAbility();
 	
-	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<UPlayerCharacterHUD> PlayerHUDClass;
-	UPROPERTY()
-	UPlayerCharacterHUD* PlayerHUD;
+
 
 public:	
 	// Called every frame
