@@ -91,3 +91,11 @@ void APlayerCharacter::FireWeapon(const FInputActionValue& Value)
         Fire(BulletStartPosition->GetComponentLocation() + 10000.0f * CameraForward);
     }
 }
+
+void APlayerCharacter::UpdateHealthBar(float HealthPercent)
+{
+	if (IsLocallyControlled())
+	{
+        UE_LOG(LogTemp, Display, TEXT("Updating Health Bar: %f"), HealthPercent);
+	}
+}

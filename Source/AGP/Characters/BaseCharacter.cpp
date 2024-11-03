@@ -3,6 +3,9 @@
 
 #include "BaseCharacter.h"
 #include "HealthComponent.h"
+#include "PlayerCharacter.h"
+#include "AGP/MultiplayerGameMode.h"
+#include "Net/UnrealNetwork.h"
 
 // Sets default values
 ABaseCharacter::ABaseCharacter()
@@ -22,13 +25,12 @@ void ABaseCharacter::BeginPlay()
 	
 }
 
-bool ABaseCharacter::Fire(const FVector& FireAtLocation)
+void ABaseCharacter::Fire(const FVector& FireAtLocation)
 {
 	if (HasWeapon())
 	{
-		return WeaponComponent->Fire(BulletStartPosition->GetComponentLocation(), FireAtLocation);
+		WeaponComponent->Fire(BulletStartPosition->GetComponentLocation(), FireAtLocation);
 	}
-	return false;
 }
 
 void ABaseCharacter::Reload()
@@ -36,6 +38,28 @@ void ABaseCharacter::Reload()
 	if (HasWeapon())
 	{
 		WeaponComponent->Reload();
+	}
+}
+
+void ABaseCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(ABaseCharacter, WeaponComponent);
+}
+
+void ABaseCharacter::OnDeath()
+{
+	// WE ONLY WANT TO HANDLE LOGIC IF IT IS ON THE SERVER
+	if (GetLocalRole() != ROLE_Authority) return;
+	
+	if (APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(this))
+	{
+		// If it casts to a PlayerCharacter then we know that a player has died.
+		if (AMultiplayerGameMode* GameMode = Cast<AMultiplayerGameMode>(GetWorld()->GetAuthGameMode()))
+		{
+			// Tell the GameMode to respawn this player.
+			GameMode->RespawnPlayer(GetController());
+		}
 	}
 }
 
@@ -51,6 +75,21 @@ bool ABaseCharacter::HasWeapon()
 }
 
 void ABaseCharacter::EquipWeapon(bool bEquipWeapon, const FWeaponStats& WeaponStats)
+{
+	if (GetLocalRole() == ROLE_Authority)
+	{
+		EquipWeaponImplementation(bEquipWeapon, WeaponStats);
+		MulticastEquipWeapon(bEquipWeapon, WeaponStats);
+	}
+}
+
+// Called to bind functionality to input
+void ABaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+}
+
+void ABaseCharacter::EquipWeaponImplementation(bool bEquipWeapon, const FWeaponStats& WeaponStats)
 {
 	// Create or remove the weapon component depending on whether we are trying to equip a weapon and we
 	// don't already have one. Or if we are trying to unequip a weapon and we do have one.
@@ -72,8 +111,7 @@ void ABaseCharacter::EquipWeapon(bool bEquipWeapon, const FWeaponStats& WeaponSt
 		UE_LOG(LogTemp, Display, TEXT("Equipping weapon: \n%s"), *WeaponStats.ToString())
 		WeaponComponent->SetWeaponStats(WeaponStats);
 	}
-	
-	EquipWeaponGraphical(bEquipWeapon);
+
 	if (bEquipWeapon)
 	{
 		UE_LOG(LogTemp, Display, TEXT("Player has equipped weapon."))
@@ -84,9 +122,9 @@ void ABaseCharacter::EquipWeapon(bool bEquipWeapon, const FWeaponStats& WeaponSt
 	}
 }
 
-// Called to bind functionality to input
-void ABaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void ABaseCharacter::MulticastEquipWeapon_Implementation(bool bEquipWeapon, const FWeaponStats& WeaponStats)
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	//EquipWeaponImplementation(bEquipWeapon, WeaponStats);
+	EquipWeaponGraphical(bEquipWeapon);
 }
 

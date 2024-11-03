@@ -20,6 +20,11 @@ public:
 	// Sets default values for this character's properties
 	APlayerCharacter();
 
+	void UpdateHealthBar(float HealthPercent);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void ChooseCharacterMesh();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -46,6 +51,11 @@ protected:
 	AAbilityBase* CurrentAbility;
 
 	void ActivateCurrentAbility();
+	
+	//UPROPERTY(EditDefaultsOnly)
+	//TSubclassOf<UPlayerCharacterHUD> PlayerHUDClass;
+	//UPROPERTY()
+	//UPlayerCharacterHUD* PlayerHUD;
 
 public:	
 	// Called every frame
