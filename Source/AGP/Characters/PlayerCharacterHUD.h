@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Components/ProgressBar.h"
 #include "PlayerCharacterHUD.generated.h"
 
 /**
@@ -13,5 +14,9 @@ UCLASS()
 class AGP_API UPlayerCharacterHUD : public UUserWidget
 {
 	GENERATED_BODY()
+
+protected:
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UProgressBar* HealthBar;
 	
 };

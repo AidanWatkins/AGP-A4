@@ -25,6 +25,7 @@ void APlayerCharacter::BeginPlay()
             Subsystem->AddMappingContext(InputMappingContext, 0);
         }
     }
+	
 
     // Ability setup
     CurrentAbility = GetWorld()->SpawnActor<AChargeAbility>(AChargeAbility::StaticClass(), GetActorLocation(), FRotator::ZeroRotator);
